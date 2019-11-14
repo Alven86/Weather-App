@@ -16,9 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let currentweather = CurrentWeather()
-        currentweather.getCurrentWeather { (success) in
-            if success{print("city is: ",currentweather.city,currentweather.currentTemp)}
+        HourlyForecast.downloadHourlyForecastWeather { (HourlyForecastArray) in
+            for data in HourlyForecastArray{
+               print("Forecast data:", data.temp, data.date, data.weatherIcon)
+            }
         }
         
         

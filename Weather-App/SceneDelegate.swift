@@ -16,8 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
+        let currentweather = CurrentWeather()
+        currentweather.getCurrentWeather { (success) in
+            if success{print("city is: ",currentweather.city,currentweather.currentTemp)}
+        }
         
-        CurrentWeather.getCurrentWeather()
+        
         }
     }
 

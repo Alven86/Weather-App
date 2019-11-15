@@ -16,10 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        HourlyForecast.downloadHourlyForecastWeather { (HourlyForecastArray) in
-            for data in HourlyForecastArray{
-               print("Forecast data:", data.temp, data.date, data.weatherIcon)
-            }
+        WeeklyWeatherForecast.downloadWeeklyWeatherForecast { (weeklyArray) in
+            for forecast in weeklyArray{
+                print("forecast info: ", forecast.date, forecast.temp,forecast.weatherIcon)
+        }
+       
         }
         
         

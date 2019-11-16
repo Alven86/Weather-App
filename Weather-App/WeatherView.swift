@@ -23,6 +23,70 @@ class WeatherView: UIView {
     @IBOutlet weak var infoCollectionView: UICollectionView!
     
    
+    //MARK: Vars
+    var currentWeather: CurrentWeather!
+    var weeklyWeatherForecastData: [WeeklyWeatherForecast] = []
+    var dailyWeatherForecastData: [HourlyForecast] = []
+   // var weatherInfoData: [WeatherInfo] = []
     
+    //MARK: INITs
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        mainInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        mainInit()
+    }
+
+    
+    private func mainInit() {
+        
+        Bundle.main.loadNibNamed("WeatherView", owner: self, options: nil)
+        addSubview(mainView)
+        mainView.frame = self.bounds
+        mainView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        setupTableView()
+        setupHourlyCollectionView()
+        setupInfoCollectionView()
+    }
+    
+    
+     private func setupTableView() {
+           
+            
+            
+        }
+        
+        private func setupHourlyCollectionView() {
+            
+            
+            
+        }
+        
+        private func setupInfoCollectionView() {
+        
+            
+            
+        }
+        
+    func refreshData() {
+           setupCurrentWeather()
+        //   setupWearherInfo()
+         //  infoCollectionView.reloadData()
+       }
+       
+       private func setupCurrentWeather() {
+              
+              cityNameLable.text = currentWeather.city
+        dateLabl.text = "Today, \(currentWeather.date.shortDate())"
+              
+        tempLabel.text = "\(currentWeather.currentTemp)"
+              weatherInfoLable.text = currentWeather.weatherType
+          }
     
 }

@@ -18,7 +18,6 @@
                 <outlet property="scrollView" destination="9hj-mI-tre" id="7J3-Rx-LlB"/>
                 <outlet property="tableView" destination="1Lm-U0-LCE" id="wET-Eb-qlP"/>
                 <outlet property="tempLabel" destination="k3g-2c-6ZD" id="Yqq-U9-6gZ"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weatherInfoLable" destination="h7w-gO-hRw" id="bzq-Da-XZY"/>
             </connections>
         </placeholder>

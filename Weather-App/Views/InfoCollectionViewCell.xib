@@ -49,7 +49,7 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="infoImageView" destination="XDn-19-jRc" id="JhK-A9-Aig"/>
+                <outlet property="infoImageView" destination="XDn-19-jRc" id="NMq-8X-dNT"/>
                 <outlet property="infoLabel" destination="ViM-aj-EI7" id="twL-sX-L4K"/>
                 <outlet property="nameLabel" destination="Ax1-R0-ZKc" id="viO-kx-Mh2"/>
             </connections>

@@ -16,4 +16,9 @@ func currentDateFromUnix(unixDate: Double?) -> Date? {
     } else {
         return Date()
     }
+    
+}
+//get the icon for wether
+func getWeatherIconFor(_ type: String) -> UIImage? {
+    return UIImage(named: type)
 }

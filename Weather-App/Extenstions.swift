@@ -16,13 +16,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    //creating format of
+    //creating format of hour and minits
     func time() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: self)
     }
-   // creating format of 
+   // creating format of week date
     func dayOfTheWeek() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"

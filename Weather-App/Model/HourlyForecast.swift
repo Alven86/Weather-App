@@ -44,14 +44,19 @@ class HourlyForecast {
        self._weatherIcon = json["weather"]["icon"].stringValue
     }
     
-    class func downloadHourlyForecastWeather(completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
+    class func downloadHourlyForecastWeather(location: WeatherLocation, completion: @escaping (_ hourlyForecast: [HourlyForecast]) -> Void) {
             
-            //var HOURLYFORECAST_URL: String!
+            //daynamik url
             
-            
-               let HOURLYFORECAST_URL = "https://api.weatherbit.io/v2.0/forecast/hourly?city=Stockholm,SE&hours=24&key=8cb940790ebc4f2f9bfbe7bae20aa9ea"
         
-         
+        var HOURLYFORECAST_URL: String!
+               
+               if !location.isCurrentLocation {
+                   HOURLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,SE&hours=24&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+               } else {
+                   HOURLYFORECAST_URL = CURRENTLOCATIONHOURLYFORECAST_URL
+               }
+               
             
             Alamofire.request(HOURLYFORECAST_URL).responseJSON { (response) in
                 

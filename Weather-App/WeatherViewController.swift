@@ -16,7 +16,7 @@ class WeatherViewController: UIViewController {
     
     
     
-    
+    var weatherLocation: WeatherLocation!
     
     
     //MARK: ViewLifecycle
@@ -32,6 +32,8 @@ class WeatherViewController: UIViewController {
         weatherView.frame = CGRect(x: 0, y: 0, width: weatherScrollView.bounds.width, height: weatherScrollView.bounds.height)
         weatherScrollView.addSubview(weatherView)
        
+        weatherLocation = WeatherLocation(city: "Stockholm", country: "Sweden", countryCode: "SE", isCurrentLocation: false)
+        
     GetCurrentWeather(weatherView: weatherView)
     getWeeklyWeather(weatherView: weatherView)
     getHourlyWeather(weatherView: weatherView)
@@ -41,7 +43,7 @@ class WeatherViewController: UIViewController {
     private func GetCurrentWeather(weatherView: WeatherView){
 
         weatherView.currentWeather = CurrentWeather()
-        weatherView.currentWeather.getCurrentWeather { (success) in
+        weatherView.currentWeather.getCurrentWeather(location: weatherLocation) { (success) in
             
             weatherView.refreshData()
             
@@ -49,14 +51,14 @@ class WeatherViewController: UIViewController {
     }
     private func getWeeklyWeather(weatherView: WeatherView){
 
-        WeeklyWeatherForecast.downloadWeeklyWeatherForecast { (weatherForecasts) in
+        WeeklyWeatherForecast.downloadWeeklyWeatherForecast(location: weatherLocation) { (weatherForecasts) in
             weatherView.weeklyWeatherForecastData = weatherForecasts
             weatherView.tableView.reloadData()
         }
     }
     private func getHourlyWeather(weatherView: WeatherView){
 
-        HourlyForecast.downloadHourlyForecastWeather { (weatherForecasts) in
+        HourlyForecast.downloadHourlyForecastWeather(location: weatherLocation) { (weatherForecasts) in
                    weatherView.dailyWeatherForecastData = weatherForecasts
                    weatherView.hourlyCollectionView.reloadData()
                }

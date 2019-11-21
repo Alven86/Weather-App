@@ -111,10 +111,21 @@ class CurrentWeather{
     
     
     //functiont to use the information
-    func getCurrentWeather(completion: @escaping(_ success: Bool)->Void) {
+    func getCurrentWeather(location: WeatherLocation, completion: @escaping(_ success: Bool)->Void) {
         
         //The API URL
-        let LOCATIONAPI_URL = "https://api.weatherbit.io/v2.0/current?city=Stockholm,SE&key=8cb940790ebc4f2f9bfbe7bae20aa9ea"
+        
+        var LOCATIONAPI_URL: String!
+        
+        if !location.isCurrentLocation {
+            LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,SE&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+        } else {
+            LOCATIONAPI_URL = CURRENTLOCATION_URL
+        }
+        
+            
+            
+            
         Alamofire.request(LOCATIONAPI_URL).responseJSON { (response) in
             
             

@@ -46,13 +46,20 @@ class WeeklyWeatherForecast {
     }
 
     
-    class func downloadWeeklyWeatherForecast(comletion: @escaping (_ weatherForecast: [WeeklyWeatherForecast]) ->Void) {
+    class func downloadWeeklyWeatherForecast(location: WeatherLocation, comletion: @escaping (_ weatherForecast: [WeeklyWeatherForecast]) ->Void) {
 
        
         
       //API URL for week
-           let WEEKLYFORECAST_URL = "https://api.weatherbit.io/v2.0/forecast/daily?city=Stockholm,SE&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea"
+          
         
+        var WEEKLYFORECAST_URL: String!
+                      
+                      if !location.isCurrentLocation {
+                          WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,SE&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+                      } else {
+                          WEEKLYFORECAST_URL = CURRENTLOCATIONWEEKLYFORECAST_URL
+                      }
         
         
         Alamofire.request(WEEKLYFORECAST_URL).responseJSON { (response) in

@@ -17,6 +17,8 @@
 		222A2D2423873EE500BC7C98 /* weatherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A2D2323873EE500BC7C98 /* weatherLocation.swift */; };
 		222A2D26238742E600BC7C98 /* APIURLS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A2D25238742E600BC7C98 /* APIURLS.swift */; };
 		222A2D2823874E4F00BC7C98 /* location.csv in Resources */ = {isa = PBXBuildFile; fileRef = 222A2D2723874E4F00BC7C98 /* location.csv */; };
+		222A2D2B23886F5400BC7C98 /* AllLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A2D2A23886F5400BC7C98 /* AllLocationsTableViewController.swift */; };
+		222A2D2D23886FC600BC7C98 /* ChooseCityUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A2D2C23886FC600BC7C98 /* ChooseCityUIViewController.swift */; };
 		224ED68E2378850000ACEFED /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224ED68D2378850000ACEFED /* CurrentWeather.swift */; };
 		22879537237CCF5400031E0E /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22879536237CCF5400031E0E /* GlobalHelpers.swift */; };
 		22879539237DA0B600031E0E /* HourlyForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22879538237DA0B600031E0E /* HourlyForecast.swift */; };
@@ -45,6 +47,8 @@
 		222A2D2323873EE500BC7C98 /* weatherLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weatherLocation.swift; sourceTree = "<group>"; };
 		222A2D25238742E600BC7C98 /* APIURLS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLS.swift; sourceTree = "<group>"; };
 		222A2D2723874E4F00BC7C98 /* location.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = location.csv; sourceTree = "<group>"; };
+		222A2D2A23886F5400BC7C98 /* AllLocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLocationsTableViewController.swift; sourceTree = "<group>"; };
+		222A2D2C23886FC600BC7C98 /* ChooseCityUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityUIViewController.swift; sourceTree = "<group>"; };
 		224ED68D2378850000ACEFED /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		22879536237CCF5400031E0E /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		22879538237DA0B600031E0E /* HourlyForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecast.swift; sourceTree = "<group>"; };
@@ -99,8 +103,7 @@
 			children = (
 				2208EE2323712E5D002F362C /* AppDelegate.swift */,
 				2208EE2523712E5D002F362C /* SceneDelegate.swift */,
-				2287953C237E2FA900031E0E /* WeatherViewController.swift */,
-				222A2D25238742E600BC7C98 /* APIURLS.swift */,
+				222A2D2923886EB700BC7C98 /* Controllers */,
 				2294EDB12381516B006D40C1 /* Views */,
 				222A2D2123873DDC00BC7C98 /* ModelHelpers */,
 				224ED68F2378852200ACEFED /* Model */,
@@ -109,6 +112,7 @@
 				222A2D2223873E0500BC7C98 /* Helpers */,
 				222A2D2023873D6500BC7C98 /* Extension */,
 				2208EE3123712E5E002F362C /* Info.plist */,
+				222A2D25238742E600BC7C98 /* APIURLS.swift */,
 				222A2D2723874E4F00BC7C98 /* location.csv */,
 				2208EE2B23712E5E002F362C /* Preview Content */,
 			);
@@ -146,6 +150,16 @@
 				22879536237CCF5400031E0E /* GlobalHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		222A2D2923886EB700BC7C98 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2287953C237E2FA900031E0E /* WeatherViewController.swift */,
+				222A2D2A23886F5400BC7C98 /* AllLocationsTableViewController.swift */,
+				222A2D2C23886FC600BC7C98 /* ChooseCityUIViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		224ED68F2378852200ACEFED /* Model */ = {
@@ -311,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2208EE2423712E5D002F362C /* AppDelegate.swift in Sources */,
+				222A2D2D23886FC600BC7C98 /* ChooseCityUIViewController.swift in Sources */,
 				2294EDB4238164EA006D40C1 /* ForecastCollectionViewCell.swift in Sources */,
 				2208EE2623712E5D002F362C /* SceneDelegate.swift in Sources */,
 				22879539237DA0B600031E0E /* HourlyForecast.swift in Sources */,
@@ -322,6 +337,7 @@
 				222A2D2423873EE500BC7C98 /* weatherLocation.swift in Sources */,
 				224ED68E2378850000ACEFED /* CurrentWeather.swift in Sources */,
 				228A20E4237FF006003CC426 /* Extenstions.swift in Sources */,
+				222A2D2B23886F5400BC7C98 /* AllLocationsTableViewController.swift in Sources */,
 				2294EDBC23817167006D40C1 /* WeatherTableViewCell.swift in Sources */,
 				222A2D26238742E600BC7C98 /* APIURLS.swift in Sources */,
 				228A20F623811114003CC426 /* WeatherInfo.swift in Sources */,

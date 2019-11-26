@@ -32,6 +32,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="F30-g3-0md"/>
                                     <barButtonItem title="Item" systemItem="add" id="Vfr-ee-FNP">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <segue destination="0HU-HO-mH1" kind="show" id="rGv-ZS-uHG"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                                 <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,7 +66,7 @@
             <objects>
                 <tableViewController id="0HU-HO-mH1" customClass="AllLocationsTableViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="938-aQ-N9l">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="RiN-tz-Duk">
@@ -77,6 +80,9 @@
                                         <constraint firstAttribute="width" constant="40" id="LlV-m7-hhj"/>
                                     </constraints>
                                     <state key="normal" image="add"/>
+                                    <connections>
+                                        <segue destination="v1F-Re-HZz" kind="show" id="TEq-KY-ee3"/>
+                                    </connections>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dvw-qg-sWe">
                                     <rect key="frame" x="8" y="12" width="135" height="32"/>
@@ -138,21 +144,22 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <navigationItem key="navigationItem" id="5e7-bu-qBe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARY-p5-SER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="856.52173913043487" y="24.776785714285712"/>
         </scene>
-        <!--Choose City View Controller-->
+        <!--Choose CityUI View Controller-->
         <scene sceneID="iis-KB-Nmb">
             <objects>
-                <viewController id="v1F-Re-HZz" customClass="ChooseCityViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="v1F-Re-HZz" customClass="ChooseCityUIViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EtR-af-j99">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3kj-nH-ouW">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="h89-S2-Dxi" detailTextLabel="Osk-l3-KT3" style="IBUITableViewCellStyleSubtitle" id="awh-69-OQl">
@@ -180,6 +187,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="v1F-Re-HZz" id="Q15-bX-6h3"/>
+                                    <outlet property="delegate" destination="v1F-Re-HZz" id="8df-At-D6r"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,6 +202,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b6d-IY-UFj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6hw-MI-1Eh"/>
+                    <connections>
+                        <outlet property="tableView" destination="3kj-nH-ouW" id="Zjg-Az-7cn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nGe-uO-vo6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,6 +213,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="180" height="180"/>
+        <image name="add" width="30" height="30"/>
     </resources>
 </document>

@@ -23,8 +23,8 @@ class ForecastCollectionViewCell: UICollectionViewCell {
     func generateCell(weather: HourlyForecast) {
         timeLabel.text = weather.date.time()
         weatherIconImageView.image = getWeatherIconFor(weather.weatherIcon)
-        //tempLabel.text = String(format: "%.0f%@", weather.temp, returnTempFormatFromUserDefaults())
-        tempLabel.text=" \(weather.temp)"
+        tempLabel.text = String(format: "%.0f%@", weather.temp, returnTempFormatFromUserDefaults())
+        
     }
     
     

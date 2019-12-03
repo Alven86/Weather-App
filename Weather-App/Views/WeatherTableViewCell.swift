@@ -30,8 +30,8 @@ class WeatherTableViewCell: UITableViewCell {
     func generateCell(forecast: WeeklyWeatherForecast) {
         dayOfTheWeekLabel.text = forecast.date.dayOfTheWeek()
         weatherIconImageView.image = getWeatherIconFor(forecast.weatherIcon)
-       // tempLabel.text = String(format: "%.0f%@", forecast.temp, returnTempFormatFromUserDefaults())
-         tempLabel.text=" \(forecast.temp)"
+       tempLabel.text = String(format: "%.0f%@", forecast.temp, returnTempFormatFromUserDefaults())
+         
     }
     
     

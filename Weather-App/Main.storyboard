@@ -33,7 +33,7 @@
                                     <barButtonItem title="Item" systemItem="add" id="Vfr-ee-FNP">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <segue destination="0HU-HO-mH1" kind="show" id="rGv-ZS-uHG"/>
+                                            <segue destination="0HU-HO-mH1" kind="show" identifier="allLocationSeg" id="rGv-ZS-uHG"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -53,8 +53,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="pageControl" destination="ESl-nc-9LA" id="0yA-2l-jEg"/>
-                        <outlet property="weatherScrollView" destination="blW-PG-h1k" id="Agx-76-U9a"/>
+                        <outlet property="pageControl" destination="ESl-nc-9LA" id="CCt-Pg-ucb"/>
+                        <outlet property="weatherScrollView" destination="blW-PG-h1k" id="ZJh-OP-0et"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -81,7 +81,7 @@
                                     </constraints>
                                     <state key="normal" image="add"/>
                                     <connections>
-                                        <segue destination="v1F-Re-HZz" kind="show" id="TEq-KY-ee3"/>
+                                        <segue destination="v1F-Re-HZz" kind="show" identifier="chooseLocationSeg" id="TEq-KY-ee3"/>
                                     </connections>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dvw-qg-sWe">
@@ -94,6 +94,9 @@
                                         <segment title="°F"/>
                                     </segments>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="tempSegmentValueChanged:" destination="0HU-HO-mH1" eventType="valueChanged" id="SJW-MT-txC"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,13 +141,21 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="cityLabel" destination="wVh-VT-Oix" id="pS5-5P-dpa"/>
-                                    <outlet property="tempLabel" destination="xj6-Zz-kCs" id="ajY-gy-Jlg"/>
+                                    <outlet property="cityLabel" destination="wVh-VT-Oix" id="mCh-0A-Nqm"/>
+                                    <outlet property="tempLabel" destination="xj6-Zz-kCs" id="1vr-2T-FfE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0HU-HO-mH1" id="2XD-cK-fc1"/>
+                            <outlet property="delegate" destination="0HU-HO-mH1" id="mIy-cP-FbM"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="5e7-bu-qBe"/>
+                    <connections>
+                        <outlet property="footerView" destination="RiN-tz-Duk" id="4Bm-0d-2XO"/>
+                        <outlet property="tempSegmentOutlet" destination="Dvw-qg-sWe" id="5zk-pW-uxf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARY-p5-SER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

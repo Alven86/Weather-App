@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-//getting date,tem,icone for a week 6 days - current day
+
 class WeeklyWeatherForecast {
     
     private var _date: Date!
@@ -40,7 +40,7 @@ class WeeklyWeatherForecast {
         
         let json = JSON(weatherDictionary)
         
-        self._temp = json["temp"].double
+        self._temp = getTempBasedOnSettings(celsious: json["temp"].double ?? 0.0)
         self._date = currentDateFromUnix(unixDate: json["ts"].double!)
         self._weatherIcon = json["weather"]["icon"].stringValue
     }
@@ -48,18 +48,15 @@ class WeeklyWeatherForecast {
     
     class func downloadWeeklyWeatherForecast(location: WeatherLocation, comletion: @escaping (_ weatherForecast: [WeeklyWeatherForecast]) ->Void) {
 
-       
-        
-      //API URL for week
-          
-        
         var WEEKLYFORECAST_URL: String!
-                      
-                      if !location.isCurrentLocation {
-                          WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,SE&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
-                      } else {
-                          WEEKLYFORECAST_URL = CURRENTLOCATIONWEEKLYFORECAST_URL
-                      }
+        
+        if !location.isCurrentLocation {
+            WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,%@&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea", location.city, location.countryCode)
+             //WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,SE&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+        } else {
+            WEEKLYFORECAST_URL = CURRENTLOCATIONWEEKLYFORECAST_URL
+        }
+        
         
         
         Alamofire.request(WEEKLYFORECAST_URL).responseJSON { (response) in

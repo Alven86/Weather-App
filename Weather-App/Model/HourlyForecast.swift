@@ -35,13 +35,14 @@ class HourlyForecast {
         return _weatherIcon
     }
     
-    
+    //initializer Dictionary string=key anyobject=value.
     init(weatherDictionary: Dictionary<String, AnyObject>) {
         
         let json = JSON(weatherDictionary)
         
         self._temp = getTempBasedOnSettings(celsious: json["temp"].double ?? 0.0)
         self._date = currentDateFromUnix(unixDate: json["ts"].double!)
+        //the key is icon weather is another dictionare.
         self._weatherIcon = json["weather"]["icon"].stringValue
     }
     
@@ -52,7 +53,7 @@ class HourlyForecast {
         
         if !location.isCurrentLocation {
             HOURLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,%@&hours=24&key=8cb940790ebc4f2f9bfbe7bae20aa9ea", location.city, location.countryCode)
-            //HOURLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/hourly?city=%@,SE&hours=24&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+            
         } else {
             HOURLYFORECAST_URL = CURRENTLOCATIONHOURLYFORECAST_URL
         }
@@ -67,18 +68,22 @@ class HourlyForecast {
                 
 
                 if let dictionary = result.value as? Dictionary<String, AnyObject> {
+                    //list is = clean hourly forcast without other info
                     if let list = dictionary["data"] as? [Dictionary<String, AnyObject>] {
-                        
+                        //go throw every value in list.
                         for item in list {
+                            //instance.
                             let forecast = HourlyForecast(weatherDictionary: item)
+                            //add element to the end of array.
                             forecastArray.append(forecast)
                         }
                         
                     }
                 }
-                
+                //return all object in array
                 completion(forecastArray)
             } else {
+                //return empty
                 completion(forecastArray)
                 print("no forecast data")
             }

@@ -8,6 +8,7 @@
 
 import UIKit
 protocol ChooseCityUIViewControllerDelegate {
+    
     func didAdd(newLocation: WeatherLocation)
 }
 class ChooseCityUIViewController: UIViewController {
@@ -42,6 +43,7 @@ class ChooseCityUIViewController: UIViewController {
             tableView.tableFooterView = UIView()
             
             setupSearchController()
+            //show search bar on top.
             tableView.tableHeaderView = searchController.searchBar
             
             setupTapGesture()
@@ -50,23 +52,25 @@ class ChooseCityUIViewController: UIViewController {
         
         
         private func setupSearchController() {
+            //creeate placeholder to search.
             searchController.searchBar.placeholder = "City or Country"
+            //uppdate when it search.
             searchController.searchResultsUpdater = self
             searchController.dimsBackgroundDuringPresentation = false
             definesPresentationContext = true
-            
+            //search bar allways showing on top.
             searchController.searchBar.searchBarStyle = UISearchBar.Style.prominent
             searchController.searchBar.sizeToFit()
             searchController.searchBar.backgroundImage = UIImage()
         }
-        
+        //tape to dismiss.
         private func setupTapGesture() {
             let tap = UITapGestureRecognizer(target: self, action: #selector(tableTapped))
             self.tableView.backgroundView = UIView()
             self.tableView.backgroundView?.addGestureRecognizer(tap)
         }
-        
-        @objc func tableTapped() {
+        //using (@objc) befor my function becus #selector is an objectiv c style.
+    @objc func tableTapped() {
             dismissView()
         }
         
@@ -74,7 +78,9 @@ class ChooseCityUIViewController: UIViewController {
         //MARK: Get Locations
         
         private func loadLoactionsFromCSV() {
+            //if we have a path.
             if let path = Bundle.main.path(forResource: "location", ofType: "csv") {
+                //pass the path to parseCSVAt function.
                 parseCSVAt(url: URL(fileURLWithPath: path))
             }
         }
@@ -82,18 +88,22 @@ class ChooseCityUIViewController: UIViewController {
         private func parseCSVAt(url: URL) {
             
             do {
+                //try to get data from passed url.
                 let data = try Data(contentsOf: url)
-                let dataEncoded = String(data: data, encoding: .utf8)
                 
+                let dataEncoded = String(data: data, encoding: .utf8)
+                // (/n) separateby line and (,) separateby string.
                 if let dataArr = dataEncoded?.components(separatedBy: "\n").map({ $0.components(separatedBy: ",")}) {
                     
                     var i = 0
                     
                     for line in dataArr {
-
+// line must have more than 2 objectwe need ["cityname","countrename","country cod"]
+                        //and i shud start from secound line.
                         if line.count > 2 && i != 0 {
                             createLocation(line: line)
                         }
+                        //add 1 to skep first line
                         i += 1
                     }
                 }
@@ -113,18 +123,19 @@ class ChooseCityUIViewController: UIViewController {
         private func saveToUserDefaults(location: WeatherLocation) {
             
             if savedLocations != nil {
-                
+                //chek if its not already in savedlocation array.
                 if !savedLocations!.contains(location) {
+                   // save the location in array.
                     savedLocations!.append(location)
                 }
             } else {
                 savedLocations = [location]
             }
-            
+            //the value in encod throws so using try? to handel the errors.
             userDefaults.set(try? PropertyListEncoder().encode(savedLocations!), forKey: "Locations")
             userDefaults.synchronize()
         }
-        
+        //avoiding to save same object twice.
         private func loadFromUserDefaults() {
             
             if let data = userDefaults.value(forKey: "Locations") as? Data {
@@ -146,7 +157,7 @@ class ChooseCityUIViewController: UIViewController {
     }
 
     extension ChooseCityUIViewController: UISearchResultsUpdating {
-        
+        //filter the recived text.
         func filterContentForSearchText(searchText: String, scope: String = "All") {
             
             filteredLocations = allLocations.filter({ (location) -> Bool in
@@ -156,6 +167,7 @@ class ChooseCityUIViewController: UIViewController {
         }
         
         func updateSearchResults(for searchController: UISearchController) {
+            //take the wirited text in place holder and send it to filterContentForSearchText.
             filterContentForSearchText(searchText: searchController.searchBar.text!)
         }
     }
@@ -168,10 +180,11 @@ class ChooseCityUIViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
+            // serch bar identifier = Cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             
             let location = filteredLocations[indexPath.row]
+            //show city name and country name when we serch.
             cell.textLabel?.text = location.city
             cell.detailTextLabel?.text = location.country
             
@@ -179,10 +192,11 @@ class ChooseCityUIViewController: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
+            //deselect row when we selected.
             tableView.deselectRow(at: indexPath, animated: true)
-            
+            //save selected location to saveToUserDefaults func.
             saveToUserDefaults(location: filteredLocations[indexPath.row])
+            //notife add new location
             delegate?.didAdd(newLocation: filteredLocations[indexPath.row])
             
             dismissView()

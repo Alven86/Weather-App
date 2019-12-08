@@ -44,9 +44,11 @@ class WeatherView: UIView {
 
         
         private func mainInit() {
-            
+            //manualy load weatherview.
             Bundle.main.loadNibNamed("WeatherView", owner: self, options: nil)
+            //addsubview to my mainview.
             addSubview(mainView)
+            //frame = screensize.
             mainView.frame = self.bounds
             mainView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             
@@ -57,10 +59,12 @@ class WeatherView: UIView {
         
         
         private func setupTableView() {
+            //register custum cells to tableview.
             tableView.register(UINib(nibName: "WeatherTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "Cell")
             
             tableView.delegate = self
             tableView.dataSource = self
+            //hide the line with empte cell.
             tableView.tableFooterView = UIView()
         }
         
@@ -70,6 +74,7 @@ class WeatherView: UIView {
         }
         
         private func setupInfoCollectionView() {
+            
             infoCollectionView.register(UINib(nibName: "InfoCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "Cell")
             infoCollectionView.dataSource = self
         }
@@ -81,7 +86,7 @@ class WeatherView: UIView {
         }
         
         private func setupCurrentWeather() {
-            
+    //get info for top view from currentweather lik city,date,temp,wethar info.
             cityNameLabel.text = currentWeather.city
             dateLabel.text = "Today, \(currentWeather.date.shortDate())"
             
@@ -90,12 +95,13 @@ class WeatherView: UIView {
         }
         
         private func setupWearherInfo() {
-            
+            //WeatherInfo is struct.
             let windInfo = WeatherInfo(infoText: String(format: "%.1f m/sec", currentWeather.windSpeed), nameText: nil, image: getWeatherIconFor("wind"))
             let humidityInfo = WeatherInfo(infoText: String(format: "%.0f ", currentWeather.humidity), nameText: nil, image: getWeatherIconFor("humidity"))
             let pressureInfo = WeatherInfo(infoText: String(format: "%.0f mb", currentWeather.pressure), nameText: nil, image: getWeatherIconFor("pressure"))
             let visibilityInfo = WeatherInfo(infoText: String(format: "%.0f km", currentWeather.visibility), nameText: nil, image: getWeatherIconFor("visibility"))
             let feelsLikeInfo = WeatherInfo(infoText: String(format: "%.1f", currentWeather.feelsLike), nameText: nil, image: getWeatherIconFor("feelsLike"))
+            //didint find image for uv so it is text insted.
             let uvInfo = WeatherInfo(infoText: String(format: "%.1f", currentWeather.uv), nameText: "UV Index", image: nil)
             let sunriseInfo = WeatherInfo(infoText: currentWeather.sunrise, nameText: nil, image: getWeatherIconFor("sunrise"))
             let sunsetInfo = WeatherInfo(infoText: currentWeather.sunset, nameText: nil, image: getWeatherIconFor("sunset"))
@@ -109,16 +115,16 @@ class WeatherView: UIView {
     extension WeatherView: UITableViewDataSource, UITableViewDelegate {
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            
+            //nr of items in array
             return weeklyWeatherForecastData.count
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
+            //create cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! WeatherTableViewCell
-            
+            //generate cell
             cell.generateCell(forecast: weeklyWeatherForecastData[indexPath.row])
-            
+            //return custom cell.
             return cell
         }
         

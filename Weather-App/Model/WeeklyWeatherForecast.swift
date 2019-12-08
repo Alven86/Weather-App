@@ -52,7 +52,7 @@ class WeeklyWeatherForecast {
         
         if !location.isCurrentLocation {
             WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,%@&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea", location.city, location.countryCode)
-             //WEEKLYFORECAST_URL = String(format: "https://api.weatherbit.io/v2.0/forecast/daily?city=%@,SE&days=7&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+             
         } else {
             WEEKLYFORECAST_URL = CURRENTLOCATIONWEEKLYFORECAST_URL
         }

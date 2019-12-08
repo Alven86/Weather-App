@@ -68,13 +68,14 @@ class WeatherViewController: UIViewController {
         }
         
         private func createWeatherViews() {
+            // creat view for every location.
             for _ in allLocations {
                 allWeatherViews.append(WeatherView())
             }
         }
         
         private func addWeatherToScrollView() {
-
+             //looping throw all views object and add to scrollview.
             for i in 0..<allWeatherViews.count {
 
                 let weatherView = allWeatherViews[i]
@@ -83,21 +84,24 @@ class WeatherViewController: UIViewController {
                 getCurrentWeather(weatherView: weatherView, location: location)
                 getWeeklyWeather(weatherView: weatherView, location: location)
                 getHourlyWeather(weatherView: weatherView, location: location)
-                
+                //y=0 becus view star from upp corner.
+                //x = xpos its multiple to keyp the views beside each other virtekle.
                 let xPos = self.view.frame.width * CGFloat(i)
                 weatherView.frame = CGRect(x: xPos, y: 0, width: weatherScrollView.bounds.width, height: weatherScrollView.bounds.height)
-                
+                //add view to scroll view.
                 weatherScrollView.addSubview(weatherView)
-                weatherScrollView.contentSize.width = weatherView.frame.width * CGFloat(i + 1)
+                //size of view.
+                weatherScrollView.contentSize.width = weatherView.frame.width * CGFloat(i + 1)//+1 margen betwen the views.
             }
         }
         
         
         private func getCurrentWeather(weatherView: WeatherView, location: WeatherLocation) {
-            
+            //get info from API.
             weatherView.currentWeather = CurrentWeather()
+            //add to weatherview.
             weatherView.currentWeather.getCurrentWeather(location: location) { (success) in
-                
+                //refresh data
                 weatherView.refreshData()
                 self.generateWeatherList()
             }
@@ -130,7 +134,7 @@ class WeatherViewController: UIViewController {
             
             if let data = userDefaults.value(forKey: "Locations") as? Data {
                 allLocations = try! PropertyListDecoder().decode(Array<WeatherLocation>.self, from: data)
-                
+                //insert current location allways first in index 0.
                 allLocations.insert(currentLocation, at: 0)
 
             } else {
@@ -152,22 +156,26 @@ class WeatherViewController: UIViewController {
         //MARK: Location Manager
         
         private func locationManagerStart() {
-            
+            //didint started yet.
             if locationManager == nil {
+                //initialize.
                 locationManager = CLLocationManager()
+                //best accurace for phone position.
                 locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+                //Premition to use GPS .
                 locationManager!.requestWhenInUseAuthorization()
                 locationManager!.delegate = self
             }
+            
             locationManager!.startMonitoringSignificantLocationChanges()
         }
-        
+        //if leving the app it stop monitoring to save battre.
         private func locationManagerStop() {
             if locationManager != nil {
                 locationManager!.stopMonitoringSignificantLocationChanges()
             }
         }
-        
+        //check if the device have the authorization to use location.
         private func locationAuthCheck() {
             
             if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -175,24 +183,28 @@ class WeatherViewController: UIViewController {
                 currentLocation = locationManager!.location?.coordinate
                 
                 if currentLocation != nil {
+                    //sett the location.
                     LocationService.shared.latitude = currentLocation.latitude
                     LocationService.shared.logitude = currentLocation.longitude
-
+                    // download wether after getting position.
                     getWeather()
                 } else {
                     locationAuthCheck()
                 }
             } else {
+                //ask for authorization.
                 locationManager?.requestWhenInUseAuthorization()
+                //re call the function.
                 locationAuthCheck()
             }
         }
         
         private func generateWeatherList() {
-            
+            //empty array.
             allWeatherData = []
-            
+            //looping throw weather view seperate citys.
             for weatherView in allWeatherViews {
+                //create city temp data object and add to allweatherdata array.
                 allWeatherData.append(CityTempData(city: weatherView.currentWeather.city, temp: weatherView.currentWeather.currentTemp))
             }
         }
@@ -233,6 +245,7 @@ class WeatherViewController: UIViewController {
     extension WeatherViewController: UIScrollViewDelegate {
         
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            //devide contentOffset.x / scrollView width
             let value = scrollView.contentOffset.x / scrollView.frame.size.width
             updatePageControlSelectedPage(currentPage: Int(round(value)))
         }

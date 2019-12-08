@@ -25,7 +25,7 @@ class InfoCollectionViewCell: UICollectionViewCell {
     func generateCell(weatherInfo: WeatherInfo) {
         infoLabel.text = weatherInfo.infoText
         infoLabel.adjustsFontSizeToFitWidth = true
-        
+        //if image avalible
         if weatherInfo.image != nil {
             nameLabel.isHidden = true
             infoImageView.isHidden = false

@@ -12,11 +12,11 @@ class MainWeatherTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
-    
+    //standart function
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+   //standart function
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -24,7 +24,10 @@ class MainWeatherTableViewCell: UITableViewCell {
     func generateCell(weatherData: CityTempData) {
         
         cityLabel.text = weatherData.city
+        //make text smaller to fit.
         cityLabel.adjustsFontSizeToFitWidth = true
+        //%.0f = no dacimal value typ = doubel.
+        //%@ = placeholder for text.
         tempLabel.text = String(format: "%.0f %@", weatherData.temp, returnTempFormatFromUserDefaults())
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="e9v-Ay-vIE">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
@@ -7,19 +7,61 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Animation-->
+        <scene sceneID="9FP-8t-eIR">
+            <objects>
+                <viewController id="e9v-Ay-vIE" customClass="Animation" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="niv-pC-HAD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather1" translatesAutoresizingMaskIntoConstraints="NO" id="SZU-w0-cEe">
+                                <rect key="frame" x="87" y="205" width="240" height="169"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4g-TI-IdG">
+                                <rect key="frame" x="105" y="630" width="204" height="44"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="27"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="fR4-ac-XSO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SZU-w0-cEe" firstAttribute="leading" secondItem="Z91-Si-HRz" secondAttribute="leading" constant="87" id="5DM-ht-fSf"/>
+                            <constraint firstItem="Z91-Si-HRz" firstAttribute="bottom" secondItem="s4g-TI-IdG" secondAttribute="bottom" constant="188" id="6fh-Xx-JSc"/>
+                            <constraint firstItem="SZU-w0-cEe" firstAttribute="top" secondItem="Z91-Si-HRz" secondAttribute="top" constant="161" id="8ki-Tn-UXS"/>
+                            <constraint firstItem="Z91-Si-HRz" firstAttribute="trailing" secondItem="s4g-TI-IdG" secondAttribute="trailing" constant="105" id="EcE-u4-E66"/>
+                            <constraint firstItem="s4g-TI-IdG" firstAttribute="leading" secondItem="Z91-Si-HRz" secondAttribute="leading" constant="105" id="FRr-en-WSU"/>
+                            <constraint firstItem="Z91-Si-HRz" firstAttribute="trailing" secondItem="SZU-w0-cEe" secondAttribute="trailing" constant="87" id="giP-xV-xfK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z91-Si-HRz"/>
+                    </view>
+                    <connections>
+                        <outlet property="logo" destination="SZU-w0-cEe" id="f0G-8U-szL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-Jy-S3o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-881.15942028985512" y="22.767857142857142"/>
+        </scene>
         <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blW-PG-h1k">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1y-ml-cKA">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="759" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bK9-zk-Lns"/>
                                     <barButtonItem style="plain" id="orA-fR-hGn">
@@ -52,6 +94,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YLx-Ft-OKk"/>
                     <connections>
                         <outlet property="pageControl" destination="ESl-nc-9LA" id="CCt-Pg-ucb"/>
                         <outlet property="weatherScrollView" destination="blW-PG-h1k" id="ZJh-OP-0et"/>
@@ -225,5 +268,6 @@
     </scenes>
     <resources>
         <image name="add" width="30" height="30"/>
+        <image name="weather1" width="179" height="169"/>
     </resources>
 </document>

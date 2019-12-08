@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
-//put unixDate in date or display the current date to avoid crash.
+//take unix number converted to date (used to convert ts in JSON).
 func currentDateFromUnix(unixDate: Double?) -> Date? {
     
     if unixDate != nil {
         return Date(timeIntervalSince1970: unixDate!)
     } else {
+        //return current date.
         return Date()
     }
     
@@ -22,7 +23,7 @@ func currentDateFromUnix(unixDate: Double?) -> Date? {
 func getWeatherIconFor(_ type: String) -> UIImage? {
     return UIImage(named: type)
 }
-
+//convert celsius to fahrenheit.
 func fahrenheitFrom(celsius: Double) -> Double {
     return (celsius * 9/5) + 32
 }

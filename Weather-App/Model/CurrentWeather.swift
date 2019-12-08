@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class CurrentWeather {
-    
+    // using private var to not be accecible from other files in project.
     private var _city: String!
     private var _date: Date!
     private var _currentTemp: Double!
@@ -26,8 +26,9 @@ class CurrentWeather {
     private var _visibility: Double! // KM
     private var _sunrise: String!
     private var _sunset: String!
-    
+    //public var
     var city: String {
+        //if the _city ==nill return empty string to avoid crashing.
         if _city == nil {
             _city = ""
         }
@@ -35,6 +36,7 @@ class CurrentWeather {
     }
     var date: Date {
         if _date == nil {
+            //using Date() to return current Date.
             _date = Date()
         }
         return _date
@@ -113,22 +115,25 @@ class CurrentWeather {
         var LOCATIONAPI_URL: String!
         
         if !location.isCurrentLocation {
+            //API URL.
             LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,%@&key=8cb940790ebc4f2f9bfbe7bae20aa9ea", location.city, location.countryCode)
-             // LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,SE&key=8cb940790ebc4f2f9bfbe7bae20aa9ea",location.city, location.countryCode)
+            
         } else {
             LOCATIONAPI_URL = CURRENTLOCATION_URL
         }
         
-        
+        //Alamofire send request to API URL and recive a JSON respons.
         Alamofire.request(LOCATIONAPI_URL).responseJSON { (response) in
-            
+            //chek if any result in response.
             let result = response.result
-            
+            //if ther is result.
             if result.isSuccess {
-                
+                //using swiftyJSON to convert to JSON.
                 let json = JSON(result.value)
                 
-//                print(json)
+             //  print(json)
+                
+                //acces the values to set the varibels.
                 self._city = json["data"][0]["city_name"].stringValue
                 self._date = currentDateFromUnix(unixDate: json["data"][0]["ts"].double)
                 self._weatherType = json["data"][0]["weather"]["description"].stringValue

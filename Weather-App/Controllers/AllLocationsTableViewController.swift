@@ -45,6 +45,7 @@ class AllLocationsTableViewController: UITableViewController {
        
        // MARK: - Table view data source
        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // if count = nil (??0)= return zero
            return weatherData?.count ?? 0
        }
 
@@ -69,7 +70,7 @@ class AllLocationsTableViewController: UITableViewController {
        }
        
        override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-
+          //first row is from our current location will not deleted.
            return indexPath.row != 0
        }
        
@@ -87,13 +88,17 @@ class AllLocationsTableViewController: UITableViewController {
        private func removeLocationFromSavedLocations(location: String) {
            
            if savedLocations != nil {
+            //go throw all object in savedlocation.
                for i in 0..<savedLocations!.count {
-                   
+                   //get templocation for evry run.
                    let tempLocation = savedLocations![i]
-
+                   //compary templocation to deleted location.
                    if tempLocation.city == location {
+                       //remove.
                        savedLocations!.remove(at: i)
+                      // save new changes.
                        saveNewLoactionsToUserDefaults()
+                       //exit.
                        return
                    }
                }
@@ -136,8 +141,11 @@ class AllLocationsTableViewController: UITableViewController {
        //MARK: Navigation
        
        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //check if its the right segue
            if segue.identifier == "chooseLocationSeg" {
+            //let viewcontroller(vc) acecc throw chooseLocationSeg to ChooseCityUIViewController.
                let vc = segue.destination as! ChooseCityUIViewController
+            //this view set as ChooseCityUIViewController delegate.
                vc.delegate = self
            }
        }

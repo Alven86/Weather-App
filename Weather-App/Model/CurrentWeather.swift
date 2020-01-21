@@ -116,7 +116,7 @@ class CurrentWeather {
         
         if !location.isCurrentLocation {
             //API URL.
-            LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,%@&key=8cb940790ebc4f2f9bfbe7bae20aa9ea", location.city, location.countryCode)
+            LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,%@&key=16569e45275243c9bf09c351b3372172", location.city, location.countryCode)
             
         } else {
             LOCATIONAPI_URL = CURRENTLOCATION_URL

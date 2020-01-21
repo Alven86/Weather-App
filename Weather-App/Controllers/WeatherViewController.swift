@@ -177,9 +177,11 @@ class WeatherViewController: UIViewController {
         }
         //check if the device have the authorization to use location.
         private func locationAuthCheck() {
-            
-            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            while true  {
                 
+              //   locationManagerStart()
+            if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+               
                 currentLocation = locationManager!.location?.coordinate
                 
                 if currentLocation != nil {
@@ -188,17 +190,19 @@ class WeatherViewController: UIViewController {
                     LocationService.shared.logitude = currentLocation.longitude
                     // download wether after getting position.
                     getWeather()
-                } else {
-                    locationAuthCheck()
-                }
+                    break;
+                } //else {
+             //       locationAuthCheck()
+                   // break;
+              //  }
             } else {
                 //ask for authorization.
                 locationManager?.requestWhenInUseAuthorization()
                 //re call the function.
-                locationAuthCheck()
+               // locationAuthCheck()
             }
         }
-        
+         }
         private func generateWeatherList() {
             //empty array.
             allWeatherData = []
